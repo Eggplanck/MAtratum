@@ -1,0 +1,37 @@
+.forms {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+.Login {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
+}
+/*.atama {
+    grid-row: 1;
+}
+.karada {
+    grid-row: 2;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}*/
+.user_id {
+    width: 70%;
+    text-align: center;
+}
+.pass {
+    width: 70%;
+    text-align: center;
+}

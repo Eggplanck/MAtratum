@@ -1,0 +1,5 @@
+**/node_modules
+matratum/db.sqlite3
+**/__pycache__
+**/.gitignore
+matratum/.env

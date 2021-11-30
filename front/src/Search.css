@@ -1,0 +1,43 @@
+.SearchField {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.Search {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+}
+.Search2 {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+}
+/*.atama {
+    grid-row: 1;
+}
+.karada {
+    grid-row: 2;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.ashi {
+    grid-row: 3;
+}*/

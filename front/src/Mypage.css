@@ -1,0 +1,63 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    border-bottom-style: solid;
+    border-bottom-color: gray;
+    width: 100%;
+    height: 20vh;
+    overflow: hidden;
+}
+.Avater {
+    align-self: center;
+    text-align: center;
+    height: 30%;
+    padding-top: 2%;
+    flex-grow: 1;
+}
+.Explain {
+    flex-grow: 1;
+    word-wrap: break-word;;
+    overflow: hidden;
+}
+.followInfo {
+    display: flex;
+    flex-direction: row;
+}
+.followCount {
+    flex-grow: 1;
+    text-align: center;
+}
+.Mypage {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overscroll-behavior-y: none;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+}
+.toprofile {
+    text-align: right;
+    flex-grow: 1;
+}
+.name {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 200%;
+}
+/*.atama {
+    grid-row: 1;
+}
+.karada {
+    grid-row: 2;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.ashi {
+    grid-row: 3;
+}*/

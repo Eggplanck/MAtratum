@@ -1,0 +1,6 @@
+.Navi {
+    width: 100vw;
+    z-index: 100;
+    position: fixed;
+    bottom: 0;
+}

@@ -1,0 +1,100 @@
+.LooseStratum {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    width: 98%;
+    height: max-content;
+    margin-top: 10px;
+    border-style: solid;
+    border-color: gray;
+    border-width: 0.5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px gray;
+    background-color: white;
+}
+.layers {
+    display: table;
+    table-layout: fixed;
+    empty-cells: show;
+    border-collapse: collapse;
+    border-top-style: solid;
+    border-top-color: black;
+    border-top-width: 0.7px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 0.7px;
+    overflow: hidden;
+    width: 100%;
+}
+.texLayer {
+    display: table-row;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border-style: solid;
+    border-color: gray;
+    border-width: 0.5px;
+    background-color: #f9f0e1;
+    width: 100%;
+}
+.plainLayer {
+    display: table-row;
+    border-style: solid;
+    border-color: gray;
+    border-width: 0.5px;
+    background-color: white;
+    width: 100%;
+}
+.plainCover {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    width: 100%;
+}
+.nextLayer {
+    display: table-row;
+    white-space: pre-wrap;
+    border-style: solid;
+    border-color: gray;
+    border-width: 0.5px;
+    width: 100%;
+    background: linear-gradient(to bottom,white,gray);
+}
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.fav {
+    flex-grow: 1;
+}
+.share {
+    flex-grow: 1;
+}
+.LooseAuthor {
+    font-size: x-large;
+    display: flex;
+    flex-direction: row;
+}
+.LooseCreated {
+    font-size: x-small;
+    color: gray;
+}
+.StratumLine {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+.exMargin {
+    display: block;
+    height: 50vh;
+    width: 100%;
+}
+.commentTarget {
+    color: gray;
+}
+.texroll{
+    width: 100%;
+    overflow-x: scroll;
+}
