@@ -1,0 +1,25 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    image: matratum-backend
+    container_name: matratum-backend
+    volumes:
+      - ./backend/database:/database
+      - ./backend/media:/media
+    command: sh start.sh
+    environment:
+      SECRET_KEY: 'abcdefghijklmnopqrstuvwxyz'
+      DEBUG: 'True'
+      HOST: '*'
+      DATABASE_DIR: '/database'
+      MEDIA_DIR: '/media'
+  
+  frontend:
+    build: ./frontend
+    image: matratum-frontend
+    container_name: matratum-frontend
+    ports:
+      - 80:80
+    depends_on:
+      - backend

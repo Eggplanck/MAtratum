@@ -1,56 +1,13 @@
 import os
-import io
-
-import environ
-import google.auth
-from google.cloud import secretmanager
-
-from google.oauth2 import service_account
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-env = environ.Env(DEBUG=(bool, False))
-env_file = os.path.join(BASE_DIR, ".env")
-
-try:
-    _, os.environ["GOOGLE_CLOUD_PROJECT"] = google.auth.default()
-except google.auth.exceptions.DefaultCredentialsError:
-    pass
-
-
-if os.path.isfile(env_file):
-    # Use a local secret file, if provided
-
-    env.read_env(env_file)
-    GS_CREDENTIALS = service_account.Credentials.from_service_account_file(os.path.join(BASE_DIR, "matratum-00000000.json"))
-elif os.getenv("TRAMPOLINE_CI", None):
-    # Create local settings if running with CI, for unit testing
-
-    placeholder = (
-        f"SECRET_KEY=a\n"
-        "GS_BUCKET_NAME=None\n"
-        f"DATABASE_URL=sqlite://{os.path.join(BASE_DIR, 'db.sqlite3')}"
-    )
-    env.read_env(io.StringIO(placeholder))
-elif os.environ.get("GOOGLE_CLOUD_PROJECT", None):
-    # Pull secrets from Secret Manager
-    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT")
-
-    client = secretmanager.SecretManagerServiceClient()
-    settings_name = os.environ.get("SETTINGS_NAME", "django_settings")
-    name = f"projects/{project_id}/secrets/{settings_name}/versions/latest"
-    payload = client.access_secret_version(name=name).payload.data.decode("UTF-8")
-
-    env.read_env(io.StringIO(payload))
-else:
-    raise Exception("No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.")
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = os.environ.get('SECRET_KEY', 'abcdefghijklmnopqrstuvwxyz')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', os.environ.get('HOST', '*')]
 
 
 # Application definition
@@ -67,7 +24,6 @@ INSTALLED_APPS = [
     'apiv1.apps.Apiv1Config',
     'accounts.apps.AccountsConfig',
     'django_cleanup.apps.CleanupConfig',
-    'storages',
 ]
 
 MIDDLEWARE = [
@@ -102,13 +58,13 @@ WSGI_APPLICATION = 'matratum.wsgi.application'
 
 
 # Use django-environ to parse the connection string
-DATABASES = {"default": env.db()}
-
-# If the flag as been set, configure to use proxy
-if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
-    DATABASES["default"]["HOST"] = "127.0.0.1"
-    DATABASES["default"]["PORT"] = 5432
-
+DATABASE_DIR = os.environ.get('DATABASE_DIR', BASE_DIR)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(DATABASE_DIR, 'db.sqlite3'),
+    }
+}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -144,22 +100,13 @@ USE_TZ = True
 AUTH_USER_MODEL = 'accounts.User'
 
 # Static files (CSS, JavaScript, Images)
-
-# STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-
-
-# Define static storage via django-storages[google]
-GS_BUCKET_NAME = env("GS_BUCKET_NAME")
-STATIC_URL = "/static/"
-STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # アップロードした画像の保存先
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_DIR = os.environ.get('MEDIA_DIR', BASE_DIR)
+MEDIA_ROOT = os.path.join(MEDIA_DIR, 'media')
 MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-
-GS_DEFAULT_ACL = "publicRead"
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
