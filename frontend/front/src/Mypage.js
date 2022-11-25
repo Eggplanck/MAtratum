@@ -11,7 +11,7 @@ import Tab from '@material-ui/core/Tab';
 import './Mypage.css'
 import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import {withRouter} from 'react-router-dom'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Button } from '@material-ui/core';
@@ -39,12 +39,12 @@ class Mypage extends React.Component {
             this.props.history.replace('/login')
         }else{
             if(!this.props.mypage_init){
-                let user_id = Cookies.get('matratum-user-id')
+                let user_id = localStorage.getItem('matratum-user-id')
                 let accessURL1 = '/apiv1/userdetail/' + user_id + '/'
                 let accessURL2 = '/apiv1/favorite/'
                 let config = {
                     headers: {
-                        "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                        "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                     },
                     data:{}
                 }
@@ -104,12 +104,12 @@ class Mypage extends React.Component {
             if(this.props.my_line.length === 0){
                 return
             }
-            let user_id = Cookies.get('matratum-user-id')
+            let user_id = localStorage.getItem('matratum-user-id')
             let lastTime = this.props.my_line[this.props.my_line.length-1].created
             let accessURL = '/apiv1/userline-more/' + user_id + '/' + lastTime + '/'
             let config = {
                 headers: {
-                    "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                    "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                 },
                 data:{}
             }
@@ -131,7 +131,7 @@ class Mypage extends React.Component {
             let accessURL = '/apiv1/favorite-more/' + lastTime + '/'
             let config = {
                 headers: {
-                    "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                    "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                 },
                 data:{}
             }

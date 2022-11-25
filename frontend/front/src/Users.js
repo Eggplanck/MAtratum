@@ -4,7 +4,7 @@ import Header from './Header';
 import UserList from './UserList';
 import './Users.css'
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
@@ -24,7 +24,7 @@ class Users extends React.Component {
         let accessURL = '/apiv1/'+this.props.mode+'/' + this.props.match.params.user_id + '/'
         let config = {
             headers: {
-                "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
             },
             data:{}
         }

@@ -5,7 +5,7 @@ import Footer from './Footer';
 import Header from './Header';
 import './TimeLine.css';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import {withRouter} from 'react-router-dom'
 import { Button } from '@material-ui/core';
 
@@ -28,7 +28,7 @@ class TimeLine extends React.Component {
                 let accessURL = '/apiv1/timeline/' + this.props.last_update_time + '/'
                 let config = {
                     headers: {
-                        "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                        "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                     },
                     data:{}
                 }
@@ -57,7 +57,7 @@ class TimeLine extends React.Component {
             let accessURL = '/apiv1/timeline-more/' + lastTime + '/'
             let config = {
                 headers: {
-                    "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                    "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                 },
                 data:{}
             }

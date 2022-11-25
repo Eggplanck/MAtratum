@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Header from './Header';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import './Profile.css';
 import TextField from '@material-ui/core/TextField';
 import {withRouter, Redirect} from 'react-router-dom';
@@ -91,7 +91,7 @@ class Profile extends React.Component {
             let config = {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    "Authorization": "Token " + Cookies.get('matratum-auth-token'),
+                    "Authorization": "Token " + localStorage.getItem('matratum-auth-token'),
                 },
             }
             this.crop.result({
@@ -124,7 +124,7 @@ class Profile extends React.Component {
         }else{
             let config = {
                 headers: {
-                    "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                    "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                 },
             }
             let data = {
@@ -149,7 +149,7 @@ class Profile extends React.Component {
             let accessURL = '/apiv1/exit/'
             let config = {
                 headers: {
-                    "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                    "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                 },
             }
             let data = {}

@@ -7,7 +7,7 @@ import './UserDetail.css'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {withRouter} from 'react-router-dom'
 
@@ -37,7 +37,7 @@ class UserDetail extends React.Component {
         if(this.props.logged_in){
             let config = {
                 headers: {
-                    "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                    "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                 },
                 data:{}
             }
@@ -86,7 +86,7 @@ class UserDetail extends React.Component {
             if(this.props.logged_in){
                 let config = {
                     headers: {
-                        "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                        "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                     },
                     data:{}
                 }
@@ -138,7 +138,7 @@ class UserDetail extends React.Component {
         let accessURL = '/apiv1/userline-more/' + this.props.match.params.user_id + '/' + lastTime + '/'
         let config = {
             headers: {
-                "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
             },
             data:{}
         }
@@ -162,7 +162,7 @@ class UserDetail extends React.Component {
         let accessURL = '/apiv1/follow/'
         let config = {
             headers: {
-                "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
             },
         }
         let data = {
@@ -216,7 +216,7 @@ class UserDetail extends React.Component {
                         <div className='followButton'>
                         {this.state.followed?'Followed':''}
                         </div>
-                        {(this.props.match.params.user_id !== Cookies.get('matratum-user-id'))?
+                        {(this.props.match.params.user_id !== localStorage.getItem('matratum-user-id'))?
                         <div className='followButton'>
                             {!this.state.following?
                             <Button variant='contained' color='primary' onClick={this.Follow} >

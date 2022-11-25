@@ -3,15 +3,15 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import './App.css';
 import PageControler from './PageControler'
-import Cookies from 'js-cookie';
+
 
 let my_id = -1
 let w_login = false
 
-if(Cookies.get('matratum-user-id')!==undefined){
-    my_id = Cookies.get('matratum-user-id')
+if(localStorage.getItem('matratum-user-id')){
+    my_id = localStorage.getItem('matratum-user-id')
 }
-if(Cookies.get('matratum-auth-token')!==undefined){
+if(localStorage.getItem('matratum-auth-token')){
     w_login = true
 }
 

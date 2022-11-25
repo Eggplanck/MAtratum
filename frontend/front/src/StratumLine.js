@@ -10,7 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import {withRouter} from 'react-router-dom'
 
 const theme2 = createMuiTheme({
@@ -84,7 +84,7 @@ class LooseStratum extends React.Component {
         let accessURL = '/apiv1/favorite/'
         let config = {
             headers: {
-                "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
             },
         }
         let data = {
@@ -122,7 +122,7 @@ class LooseStratum extends React.Component {
         let accessURL = '/apiv1/share/'
         let config = {
             headers: {
-                "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
             },
         }
         let data = {
@@ -161,7 +161,7 @@ class LooseStratum extends React.Component {
             let accessURL = '/apiv1/delete/'
             let config = {
                 headers: {
-                    "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                    "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                 },
             }
             let data = {

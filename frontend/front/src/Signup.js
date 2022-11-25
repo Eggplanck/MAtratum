@@ -5,7 +5,7 @@ import './Login.css';
 import Button from '@material-ui/core/Button';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import {withRouter,Link} from 'react-router-dom'
 
 function mappingState(state) {
@@ -71,8 +71,8 @@ class Signup extends React.Component {
         }
         axios.post(accessURL,data)
         .then(function(response){
-            Cookies.set('matratum-auth-token',response.data['token'])
-            Cookies.set('matratum-user-id',response.data['user_id'])
+            localStorage.setItem('matratum-auth-token',response.data['token'])
+            localStorage.setItem('matratum-user-id',response.data['user_id'])
             this.props.dispatch({
                 type:'Login',
                 user_id:response.data['user_id']

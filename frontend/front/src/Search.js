@@ -14,7 +14,7 @@ import Select from '@material-ui/core/Select';
 import { Button } from '@material-ui/core';
 import UserList from './UserList'
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {withRouter} from 'react-router-dom'
 
@@ -66,7 +66,7 @@ class Search extends React.Component {
                 let accessURL = '/apiv1/latest/'
                 let config = {
                     headers: {
-                        "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                        "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                     },
                     data:{}
                 }
@@ -119,7 +119,7 @@ class Search extends React.Component {
                 let accessURL = '/apiv1/wordsearch/' + this.state.word + '/'
                 let config = {
                     headers: {
-                        "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                        "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                     },
                     data:{}
                 }
@@ -143,7 +143,7 @@ class Search extends React.Component {
                 let accessURL = '/apiv1/usersearch/' + this.state.word + '/'
                 let config = {
                     headers: {
-                        "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                        "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                     },
                     data:{}
                 }
@@ -217,7 +217,7 @@ class Search extends React.Component {
             if(this.state.type === 'word'){
                 let config = {
                     headers: {
-                        "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                        "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                     },
                     data:{}
                 }

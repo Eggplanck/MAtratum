@@ -12,7 +12,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import {withRouter} from 'react-router-dom'
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 
 
 function mappingState(state) {
@@ -53,7 +53,7 @@ class Header extends React.Component {
         let accessURL = '/apiv1/timeline/' + this.props.last_update_time + '/'
         let config = {
             headers: {
-                "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
             },
             data:{}
         }
@@ -85,8 +85,8 @@ class Header extends React.Component {
         this.props.history.push('/search')
     }
     Logout(){
-        Cookies.remove('matratum-auth-token')
-        Cookies.remove('matratum-user-id')
+        localStorage.removeItem('matratum-auth-token')
+        localStorage.removeItem('matratum-user-id')
         this.props.dispatch({
             type:'Logout'
         })

@@ -11,7 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import {withRouter} from 'react-router-dom'
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
@@ -48,7 +48,7 @@ class Stratum extends React.Component {
         if(this.props.logged_in){
             let config = {
                 headers: {
-                    "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                    "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                 },
                 data:{}
             }
@@ -99,7 +99,7 @@ class Stratum extends React.Component {
             if(this.props.logged_in){
                 let config = {
                     headers: {
-                        "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                        "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                     },
                     data:{}
                 }
@@ -178,7 +178,7 @@ class Stratum extends React.Component {
         if(this.props.logged_in){
             let config = {
                 headers: {
-                    "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                    "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                 },
             }
             let data = {
@@ -214,7 +214,7 @@ class Stratum extends React.Component {
         if(this.props.logged_in){
             let config = {
                 headers: {
-                    "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                    "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
                 },
             }
             let data = {

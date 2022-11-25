@@ -16,7 +16,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import EditIcon from '@material-ui/icons/Edit';
 import ClearIcon from '@material-ui/icons/Clear';
 import axios from 'axios';
-import Cookies from 'js-cookie';
+
 import {withRouter, Redirect} from 'react-router-dom'
 
 
@@ -172,7 +172,7 @@ class Edit extends React.Component {
         }
         let config = {
             headers: {
-                "Authorization": "Token " + Cookies.get('matratum-auth-token')
+                "Authorization": "Token " + localStorage.getItem('matratum-auth-token')
             },
         }
         axios.post(accessURL,post_data,config)
