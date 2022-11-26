@@ -101,12 +101,13 @@ AUTH_USER_MODEL = 'accounts.User'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_DIR = os.environ.get('STATIC_DIR', BASE_DIR)
+STATIC_ROOT = os.path.join(STATIC_DIR, 'static/')
 
 # アップロードした画像の保存先
+MEDIA_URL = '/media/'
 MEDIA_DIR = os.environ.get('MEDIA_DIR', BASE_DIR)
 MEDIA_ROOT = os.path.join(MEDIA_DIR, 'media')
-MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

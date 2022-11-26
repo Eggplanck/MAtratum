@@ -7,6 +7,7 @@ services:
     volumes:
       - ./backend/database:/database
       - ./backend/media:/media
+      - ./backend/static:/static
     command: sh start.sh
     environment:
       SECRET_KEY: 'abcdefghijklmnopqrstuvwxyz'
@@ -14,11 +15,15 @@ services:
       HOST: '*'
       DATABASE_DIR: '/database'
       MEDIA_DIR: '/media'
+      STATIC_DIR: '/static'
   
   frontend:
     build: ./frontend
     image: matratum-frontend
     container_name: matratum-frontend
+    volumes:
+      - ./backend/media:/backend/media
+      - ./backend/static:/backend/static
     ports:
       - 80:80
     depends_on:
