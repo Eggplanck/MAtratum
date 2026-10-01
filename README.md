@@ -1,6 +1,5 @@
 # MAtratum
-数式を投稿できるSNSです。<br/>
-[MAtratum-数式を投稿できるSNS-](http://34.168.80.237:80)
+数式を投稿できるSNSです。
 
 ## Requirements
 * Docker
